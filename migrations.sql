@@ -55,4 +55,14 @@ JOIN listings l ON u.id = l.user_id
 JOIN images i ON l.id = i.listing_id
 JOIN categories c ON l.category_id = c.id;
 
-SELECT * FROM listing_details;
+CREATE VIEW listing AS
+SELECT
+    l.title,
+    l.price,
+    c.name AS category_name,
+    u.username,
+    l.status,
+    l.created_at
+FROM listings l
+JOIN users u ON l.user_id = u.id
+JOIN categories c ON l.category_id = c.id;
