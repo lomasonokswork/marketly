@@ -12,6 +12,7 @@ return [
     "/login-submit" => "controllers/auth/login.php",
     "/signup" => "controllers/auth/signup_page.php",
     "/signup-submit" => "controllers/auth/signup.php",
+    "/logout" => "controllers/auth/logout.php",
 
 ];
 
