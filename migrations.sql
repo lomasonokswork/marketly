@@ -57,12 +57,12 @@ JOIN categories c ON l.category_id = c.id;
 
 CREATE VIEW listing AS
 SELECT
-	l.title,
-	l.price,
-	c.name AS category_name,
-	u.username,
-	l.status,
-	l.created_at
+    l.title,
+    l.price,
+    c.name AS category_name,
+    u.username,
+    l.status,
+    l.created_at
 FROM listings l
 JOIN users u ON l.user_id = u.id
 JOIN categories c ON l.category_id = c.id;
@@ -80,3 +80,4 @@ VALUES
 ("Construction"),
 ("Production"),
 ("Leisure and Hobbies");
+

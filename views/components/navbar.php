@@ -116,20 +116,12 @@ if (session_status() === PHP_SESSION_NONE) {
 
   <header>
     <nav>
-        <ul>
-            <?php /*if (!empty($_SESSION['username'])) : ?>
-            <div class="navbar-user">Logged in as: <?= htmlspecialchars($_SESSION['username']) ?><a href="logout"><br>Logout</a></div>
-        <?php endif; */?>
-            <li><a href="/">Home</a></li>
       <ul>
         <div class="topnav">
           <div class="topnav-left">
             <li><a href="/" class="active">Home</a></li>
             <li><a href="/browse">Browse Listings</a></li>
             <li><a href="/create">Create Listing</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Create Listing</a></li>
-        </ul>
           </div>
           <div class="topnav-right">
             <li><a href="/login" class="btn-login">Login</a></li>
@@ -138,7 +130,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
       </ul>
     </nav>
-</header>
   </header>
 
 </body>
