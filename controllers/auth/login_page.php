@@ -2,7 +2,7 @@
 session_start();
 
 $pageTitle = "Login";
-$customStyles = "style.css";
+$customStyles = "login.css";
 
 $errors = $errors ?? [];
 
