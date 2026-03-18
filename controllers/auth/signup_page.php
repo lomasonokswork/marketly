@@ -1,5 +1,6 @@
 <?php
 $pageTitle = "Signup";
-$customStyles = "style.css";
+
+$customStyles = "signup.css";
 
 require "./views/auth/signup.view.php";

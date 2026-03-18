@@ -8,7 +8,7 @@ class Validator
         $value = trim($value);
 
         return is_string($value)
-            && strlen($value) > $min
+            && strlen($value) >= $min
             && strlen($value) <= $max;
 
     }

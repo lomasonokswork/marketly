@@ -1,16 +1,21 @@
 ﻿<?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}?>
+  session_start();
+} ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Navbar</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -75,12 +80,12 @@ if (session_status() === PHP_SESSION_NONE) {
 
     .topnav li a:hover {
       color: #f8f5f8;
-      background: rgba(0,0,0,0.06);
+      background: rgba(0, 0, 0, 0.06);
     }
 
     .topnav li a.active {
       color: #2ca478;
-      background: rgba(4,170,109,0.1);
+      background: rgba(4, 170, 109, 0.1);
       font-weight: 600;
     }
 
@@ -112,6 +117,7 @@ if (session_status() === PHP_SESSION_NONE) {
     }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -124,8 +130,17 @@ if (session_status() === PHP_SESSION_NONE) {
             <li><a href="/create">Create Listing</a></li>
           </div>
           <div class="topnav-right">
-            <li><a href="/login" class="btn-login">Login</a></li>
-            <li><a href="/signup" class="btn-signup">Sign Up</a></li>
+            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
+              <li>
+                <a>
+                  <?php echo "Logged in as: " . htmlspecialchars($_SESSION['username'] ?? 'User'); ?>
+                </a>
+              </li>
+              <li><a href="/logout" class="btn-login">Logout</a></li>
+            <?php else: ?>
+              <li><a href="/login" class="btn-login">Login</a></li>
+              <li><a href="/signup" class="btn-signup">Sign Up</a></li>
+            <?php endif; ?>
           </div>
         </div>
       </ul>
@@ -133,4 +148,5 @@ if (session_status() === PHP_SESSION_NONE) {
   </header>
 
 </body>
+
 </html>

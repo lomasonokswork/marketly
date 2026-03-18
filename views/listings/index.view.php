@@ -5,6 +5,7 @@
 <?php if (count($listings) == 0) { ?>
     <p>No listings found, try searching for something else!</p>
 <?php } else { ?>
+<h3>Latest Listings</h3>
     <ul>
         <?php foreach ($listings as $listing) { ?>
             <li> <a href="show?id=<?= $listing["id"] ?>"> <?= $listing["title"] ?> </a></li>

@@ -8,7 +8,10 @@ if (!$id || !is_numeric($id)) {
     die();
 }
 
-$sql = "SELECT * FROM listings WHERE id = :id LIMIT 1";
+$sql = "SELECT l.*, u.username, c.name as category_name FROM listings l 
+    JOIN users u ON l.user_id = u.id 
+    JOIN categories c ON l.category_id = c.id 
+    WHERE l.id = :id LIMIT 1";
 $listing = $db->query($sql, ['id' => $id])->fetch(PDO::FETCH_ASSOC);
 
 if (!$listing) {
