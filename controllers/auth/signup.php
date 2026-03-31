@@ -1,29 +1,46 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
+session_start();
+
+require __DIR__ . "/../../Validator.php";
+
+$errors = [];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"] ?? "";
+    $email = $_POST["email"] ?? "";
+    $password = $_POST["password"] ?? "";
+    $passwordconfirm = $_POST["cpassword"] ?? "";
+
+    if (!Validator::string($username, min: 6, max: 30)) {
+        $errors["username"] = "Username must be 6-30 characters long";
+    }
+
+    if (!Validator::string($email, max: 255) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors["email"] = "Please provide a valid email address";
+    }
+
+    if (!Validator::string($password, min: 6, max: 30)) {
+        $errors["password"] = "Password must be 6-30 characters long";
+    }
+
+    if ($password !== $passwordconfirm) {
+        $errors["passwordc"] = "Passwords do not match";
+    }
+
+    if (empty($errors)) {
+        try {
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (username, email, password_hash, created_at, permission_level)
+                VALUES(:username, :email, :password_hash, NOW(), 1)";
+            $params = ["username" => $username, "email" => $email, "password_hash" => $password_hash];
+            $db->query($sql, $params);
+
+            $_SESSION["user_id"] = null;
+            header("Location: /");
+            exit();
+        } catch (Exception $e) {
+            $errors["database"] = "Error creating account. Email might already exist.";
+        }
+    }
 }
-?>
-<header>
-  <nav>
-    <ul>
-      <div class="topnav">
-        <div class="topnav-left">
-          <li><a href="/" class="active">Home</a></li>
-          <li><a href="/browse">Browse Listings</a></li>
-          <li><a href="/create">Create Listing</a></li>
-        </div>
-        <div class="topnav-right">
-          <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
-            <li>
-              <a><?php echo "Logged in as: " . htmlspecialchars($_SESSION['username'] ?? 'User'); ?></a>
-            </li>
-            <li><a href="/logout" class="btn-login">Logout</a></li>
-          <?php else: ?>
-            <li><a href="/login" class="btn-login">Login</a></li>
-            <li><a href="/signup" class="btn-signup">Sign Up</a></li>
-          <?php endif; ?>
-        </div>
-      </div>
-    </ul>
-  </nav>
-</header>
+    require __DIR__ . "/../../views/auth/signup.view.php";
