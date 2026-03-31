@@ -1,125 +1,24 @@
 /* =============================================
-   SIGNUP PAGE — signup.css
-   Matches your navbar: #385144 / #04AA6D theme
+   LOGIN PAGE — style.css
+   Matches #385144 / #04AA6D theme
    ============================================= */
 
-/* ── Full reset ── */
-*, *::before, *::after {
-  box-sizing: border-box;
+html, body {
   margin: 0;
   padding: 0;
 }
 
-html {
-  margin: 0;
-  padding: 0;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'DM Sans', sans-serif;
   background: #f8f5f2;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
 }
 
-/* ── Navbar fix ── */
-header {
-  background: #385144 !important;
-  border-bottom: 1px solid rgba(215, 214, 214, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-}
-
-nav {
-  padding: 0 2rem;
-  height: 68px;
-  display: flex;
-  align-items: center;
-}
-
-nav ul {
-  list-style: none;
-  width: 100%;
-}
-
-.topnav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.topnav-left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.topnav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.topnav li {
-  list-style: none;
-}
-
-.topnav li a {
-  display: block;
-  padding: 8px 16px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: color 0.15s, background 0.15s;
-  white-space: nowrap;
-  letter-spacing: 0.1px;
-}
-
-.topnav li a:hover {
-  color: #f8f5f8;
-  background: rgba(0, 0, 0, 0.06);
-}
-
-.topnav li a.active {
-  color: #2ca478;
-  background: rgba(4, 170, 109, 0.1);
-  font-weight: 600;
-}
-
-.topnav li a.btn-login {
-  color: #ffffff;
-  border: 1.5px solid #04aa6d;
-  border-radius: 8px;
-  font-weight: 500;
-}
-
-.topnav li a.btn-login:hover {
-  border-color: #038a58;
-  background: #038a58;
-}
-
-.topnav li a.btn-signup {
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.07);
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 8px 20px;
-  border: 1.5px solid #04AA6D;
-}
-
-.topnav li a.btn-signup:hover {
-  background: #038a58;
-  border-color: #038a58;
-}
-
-/* ── Signup content ── */
+/* ── Heading ── */
 h1 {
   font-size: 1.9rem;
   font-weight: 700;
@@ -130,7 +29,8 @@ h1 {
   margin: 2.5rem auto 0.4rem;
 }
 
-a:not(.topnav li a):not(.btn-login):not(.btn-signup):not(.active) {
+/* ── "Don't have an account" link ── */
+a {
   display: block;
   font-size: 0.875rem;
   color: #04aa6d;
@@ -141,9 +41,13 @@ a:not(.topnav li a):not(.btn-login):not(.btn-signup):not(.active) {
   margin: 0 auto 1.5rem;
   transition: color 0.15s;
 }
+a:hover {
+  color: #038a58;
+  text-decoration: underline;
+}
 
 /* ── Error box ── */
-div[style*="color: red"] {
+.errors {
   background: #fff0f0 !important;
   border: 1px solid #f5c6c6;
   border-radius: 8px;
@@ -152,6 +56,10 @@ div[style*="color: red"] {
   color: #c0392b !important;
   font-size: 0.85rem;
   max-width: 420px;
+  display: block;
+}
+.errors p {
+  margin: 0.15rem 0;
 }
 
 /* ── Form card ── */
@@ -183,7 +91,6 @@ label:first-of-type {
 
 /* ── Inputs ── */
 input[type="text"],
-input[type="email"],
 input[type="password"] {
   width: 100%;
   background: #f8f5f2;
@@ -195,10 +102,8 @@ input[type="password"] {
   padding: 0.7rem 0.9rem;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
-  box-sizing: border-box;
 }
 input[type="text"]:focus,
-input[type="email"]:focus,
 input[type="password"]:focus {
   border-color: #04aa6d;
   background: #fff;
@@ -221,13 +126,13 @@ button {
   font-size: 0.95rem;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
-  box-sizing: border-box;
 }
 button:hover {
   background: #038a58;
   border-color: #038a58;
 }
 
+/* ── Responsive ── */
 @media (max-width: 480px) {
   form { padding: 1.75rem 1.25rem; margin: 0 1rem 2rem; }
   h1   { font-size: 1.5rem; }
