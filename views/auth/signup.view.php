@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/../components/header.php'; ?>
 <h1>Sign up</h1>
-<a href="/login">Already have an account</a>
+<a href="/login">Already have an account?</a>
 
 <?php if (!empty($errors)): ?>
     <div style="color: red; margin: 10px 0;">

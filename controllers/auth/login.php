@@ -35,6 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $pageTitle = "Login";
-$customStyles = "style.css";
+$customStyles = "signup.css";
 
 require __DIR__ . "/login_page.php";
