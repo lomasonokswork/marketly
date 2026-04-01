@@ -20,6 +20,10 @@ if (!$listing) {
     die();
 }
 
+// Fetch images for the listing
+$imagesSql = "SELECT * FROM images WHERE listing_id = :listing_id ORDER BY id ASC";
+$images = $db->query($imagesSql, ['listing_id' => $id])->fetchAll(PDO::FETCH_ASSOC);
+
 $pageTitle = htmlspecialchars($listing['title']);
 $customStyles = "style.css";
 
